@@ -1,0 +1,13 @@
+.main {
+  margin-top: 84px;
+  padding: 0 30px 30px 30px;
+}
+
+@media only screen and (min-width: 992px) {
+  .main {
+    margin: 0 auto;
+    margin-top: 84px;
+    padding: 30px;
+    max-width: 45%;
+  }
+}

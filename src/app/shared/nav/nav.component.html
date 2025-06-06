@@ -1,0 +1,28 @@
+@if (detectDeviceService.isMobileDevice) {
+  <div class="mobile-nav-wrapper">
+    @if (!isMobileMenuOpen) {
+      <i class="icon fa-solid fa-bars" (click)="openMobileMenu()"></i>
+    } @else {
+      <i class="icon fa-regular fa-circle-xmark" (click)="closeMobileMenu()"></i>
+    }
+  
+    @if (isMobileMenuOpen) {
+      <div class="mobile-menu" [@menu]>
+        @for (navItem of navItems; track $index) {
+          <a class="menu-item" (click)="navigate(navItem.title)">{{ navItem.title | titlecase }}</a>
+        }
+      </div>
+      <img class="menu-lemon" [@lemon] src="/assets/images/lemon_flowers.png" alt="lemon_flowers">
+    }
+  </div>
+} @else {
+  <div class="desktop-nav-wrapper">
+    @for (navItem of navItems; track $index) {
+      <a
+        class="menu-item"
+        [ngClass]="{ 'active': navItem.isActive, 'last-active': navItem.lastActive }"
+        (click)="navigate(navItem.title)">{{ navItem.title | titlecase }}
+      </a>
+    }
+  </div>
+}

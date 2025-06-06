@@ -1,0 +1,76 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.welcome {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+
+  &::after {
+    content: url('/assets/svg/blue_frame_lemons.svg');
+    position: absolute;
+    top: -50px;
+    left: -30px;
+  }
+
+  i {
+    font-size: 18px;
+  }
+
+  .title {
+    font-family: crimson-foam, serif;
+    font-size: 60px;
+    margin-top: -15px;
+  }
+
+  .content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0 20px;
+    max-width: 240px;
+    z-index: 1;
+  }
+}
+
+.aldero-button {
+  width: 100%;
+}
+
+@media only screen and (min-width: 992px) {
+  .welcome {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    right: 25%;
+    transform: translate(50%, -50%);
+    width: 576px;
+    padding: 30px;
+
+    i {
+      font-size: 40px;
+    }
+
+    .title {
+      font-size: 113px;
+    }
+
+    .content {
+      margin: 40px 0;
+    }
+  }
+}

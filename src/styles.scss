@@ -1,1 +1,120 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: roxie-rossa;
+  src: url(assets/fonts/Roxie_Rossa.otf) format("opentype");
+}
+
+html {
+  touch-action: pan-x pan-y;
+  height: 100% 
+}
+
+html, body {
+  background-color: #FFF;
+  color: #243179;
+  font-family: 'roxie-rossa';
+  font-weight: 200;
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+
+  p {
+    font-size: 12px;
+    line-height: 1.2rem;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 30px;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  h4 {
+    font-size: 16px;
+    font-weight: 300;
+    margin: 0;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button.janna-ian-button {
+  appearance: none;
+  border: none;
+  border-radius: 6px;
+  font-family: 'roxie-rossa';
+  font-size: 12px;
+  padding: 10px 16px;
+
+  &.primary {
+    background-color: transparent;
+    color: #243179;
+    border: solid 1px #243179;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+// .aldero-label {
+//   font-weight: bold;
+//   margin-bottom: 4px;
+// }
+
+// .aldero-input {
+//   -webkit-appearance: none;
+//   appearance: none;
+//   background: #FFF;
+//   border: solid 1px #243179;
+//   border-radius: 0px;
+//   color: #243179;
+//   font-family: 'roxie-rossa';
+//   font-size: 12px;
+//   outline: none;
+//   padding: 14px;
+// }
+
+.bold {
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 992px) {
+  html, body {
+    p {
+      font-size: 16px;
+      line-height: 2rem;
+      margin: 0;
+    }
+  
+    h1 {
+      font-size: 40px;
+      font-weight: 300;
+      margin: 0;
+    }
+  }
+
+  .janna-ian-button {
+    font-size: 16px;
+    padding: 16px 20px;
+  }
+}

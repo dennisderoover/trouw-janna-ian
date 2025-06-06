@@ -1,0 +1,74 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.gift-container {
+  border: solid 1px #243179;
+  border-radius: 6px;
+  color: #243179;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  position: relative;
+
+  img {
+    position: absolute;
+    bottom: -15px;
+    right: -20px;
+    transform: rotateX(180deg);
+
+    &.flip {
+      transform: rotateY(180deg);
+      top: -15px;
+      left: -20px;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    margin-top: 6px;
+  }
+
+  i {
+    font-size: 30px;
+  }
+
+  .bank-account {
+    position: relative;
+    display: inline-block;
+
+    .copy-tooltip {
+      visibility: hidden;
+      background-color: #FFF;
+      width: 150px;
+      color: #243179;
+      text-align: center;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      top: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      border: #243179 1px solid;
+      
+      /* Fade in tooltip - takes 200ms to go from 0% to 100% opac: */
+      opacity: 0;
+      transition: opacity 200ms;
+    }
+  }
+
+  .bank-account:hover {
+    cursor: pointer;
+
+    .copy-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
