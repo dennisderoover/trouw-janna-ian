@@ -1,1 +1,357 @@
-<p>Rsvp works!</p>
+<section *ngIf="showInput">
+  <janna-ian-subtitle
+    [title]="'Si prega di rispondere'"
+    [subtitle]="'Laat ons hier weten of je erbij kan zijn!'"
+    [showLemonIcon]="true"
+  ></janna-ian-subtitle>
+
+  <form [formGroup]="form">
+    <div class="first-name">
+      <label class="janna-ian-label" for="firstName">
+        Voornaam
+      </label>
+      <input
+        #firstName
+        [formControl]="form.controls.firstName"
+        class="janna-ian-input"
+        type="text"
+      >
+    </div>
+    <div class="last-name">
+      <label class="aldero-label" for="lastName">
+        Achternaam
+      </label>
+      <input
+        #lastName
+        [formControl]="form.controls.lastName"
+        class="janna-ian-input"
+        type="text"
+      >
+    </div>
+    @if (form.hasError('invitationNotFound')) {
+      <div class="error">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <p>Geen uitnodiging voor <span class="bold">{{notFoundCredentials}}</span> gevonden!</p>
+      </div>
+    }
+  
+    @if (form.hasError('brideNameEntered')) {
+      <div class="error">
+        <i class="fa-solid fa-circle-exclamation"></i> 
+        <p><span class="bold">{{notFoundCredentials}}</span> is de bruid! Uiteraard is ze aanwezig!</p>
+      </div>
+    }
+  
+    @if (form.hasError('groomNameEntered')) {
+      <div class="error">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <p><span class="bold">{{notFoundCredentials}}</span> is de bruidegom! Uiteraard is hij aanwezig!</p>
+      </div>
+    }
+    <button
+      class="janna-ian-button primary"
+      [disabled]="form.invalid || isLoading"
+      (click)="requestInvitation()"
+    >
+      <span *ngIf="!isLoading">Vind mijn uitnodiging</span>
+      <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+    </button>
+  </form>
+</section>
+
+<!-- ALREADY ANSWERED -->
+<section *ngIf="showAlreadyAnswered">
+  <janna-ian-subtitle
+    title="Let op!"
+    [subtitle]="'We hebben al een RSVP van ' + (attendances.length > 1 ? 'jullie' : 'jou') + ' gekregen.'"
+  ></janna-ian-subtitle>
+
+  @for (guest of rsvpService.currentHousehold; track $index) {
+    <div class="personal-planning">
+      <h4 class="bold">{{ guest.firstName + ' ' + guest.lastName }}</h4>
+      @for (event of guest.invitedFor; track $index) {
+        @switch (event) {
+          @case (eActivity.CITY_HALL) {
+            <div class="event">
+              @if (attendingEvent(eActivity.CITY_HALL, guest.attending)) {
+                <i class="fa-regular fa-circle-check"></i>
+              } @else {
+                <i class="fa-regular fa-circle-xmark"></i>
+              }
+              <div class="event-info">
+                <span class="event-title bold">Burgerlijke trouw</span>
+                <span class="event-location">Stadhuis Antwerpen</span>
+              </div>
+              <span class="event-time">11u00</span>
+            </div>
+          }
+          @case (eActivity.CEREMONY) {
+            <div class="event">
+              @if (attendingEvent(eActivity.CEREMONY, guest.attending)) {
+                <i class="fa-regular fa-circle-check"></i>
+              } @else {
+                <i class="fa-regular fa-circle-xmark"></i>
+              }
+              <div class="event-info">
+                <span class="event-title bold">Ceremonie en Receptie</span>
+                <span class="event-location">Hof Van Riemen</span>
+              </div>
+              <span class="event-time">15u30 - 19u00</span>
+            </div>
+          }
+          @case (eActivity.DINER) {
+            <div class="event">
+              @if (attendingEvent(eActivity.DINER, guest.attending)) {
+                <i class="fa-regular fa-circle-check"></i>
+              } @else {
+                <i class="fa-regular fa-circle-xmark"></i>
+              }
+              <div class="event-info">
+                <span class="event-title bold">Diner</span>
+                <span class="event-location">Hof Van Riemen</span>
+              </div>
+              <span class="event-time">19u00 - 21u00</span>
+            </div>
+          }
+          @case (eActivity.PARTY) {
+            <div class="event">
+              @if (attendingEvent(eActivity.PARTY, guest.attending)) {
+                <i class="fa-regular fa-circle-check"></i>
+              } @else {
+                <i class="fa-regular fa-circle-xmark"></i>
+              }
+              <div class="event-info">
+                <span class="event-title bold">Party Time</span>
+                <span class="event-location">Hof Van Riemen</span>
+              </div>
+              <span class="event-time">21u00</span>
+            </div>
+          }
+        }
+      }
+    </div>
+  }
+
+  <div class="actions">
+    <button
+      class="janna-ian-button primary"
+      (click)="goToNextActivity(eActivity.CITY_HALL)"
+    >
+      <span *ngIf="!isLoading">Pas aanwezigheden aan</span>
+      <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+    </button>
+  
+    <button
+      class="janna-ian-button outlined-primary"
+      [routerLink]="['/locatie']"
+    >
+      <span *ngIf="!isLoading">Waar is dat feestje?</span>
+      <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+    </button>
+  </div>
+</section>
+<!-- END ALREADY ANSWERED -->
+
+<!-- CITY_HALL -->
+<section *ngIf="showCityHall">
+  <div class="event-header">
+    <janna-ian-subtitle
+      title="Burgerlijke trouw"
+      subtitle="Stadhuis Antwerpen"
+    ></janna-ian-subtitle>
+    <p class="timeslot">11u00</p>
+  </div>
+
+  <div class="selection" *ngFor="let guest of rsvpService.currentHousehold">
+    <p class="bold">{{ guest.firstName }} {{ guest.lastName }}</p>
+    <div class="selection-btns">
+      <button
+        class="janna-ian-button"
+        [ngClass]="[guestIsComing(eActivity.CITY_HALL, guest) ? 'primary' : 'outlined-primary']"
+        (click)="selectAnswer(eActivity.CITY_HALL, eSelectionAnswer.COMING, guest)"
+      >Ik kom</button>
+      <button
+        class="janna-ian-button"
+        [ngClass]="[guestIsNotComing(eActivity.CITY_HALL, guest) ? 'primary' : 'outlined-primary']"
+        (click)="selectAnswer(eActivity.CITY_HALL, eSelectionAnswer.NOT_COMING, guest)"
+      >Ik kom niet</button>
+    </div>
+  </div>
+
+  <button
+    class="janna-ian-button primary"
+    [disabled]="!submitStepEnabled(eActivity.CITY_HALL) || isLoading"
+    (click)="submitAnswers(eActivity.CITY_HALL)"
+  >
+    <span *ngIf="!isLoading">Ga verder</span>
+    <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+  </button>
+</section>
+<!-- END ANTWERP -->
+
+<!-- CEREMONY -->
+<section *ngIf="showCeremony">
+  <div class="event-header">
+    <janna-ian-subtitle
+      title="Ceremonie en Receptie"
+      subtitle="Hof Van Riemen"
+    ></janna-ian-subtitle>
+    <p class="timeslot">15u00 tot 19u00</p>
+  </div>
+
+  <div class="selection" *ngFor="let guest of rsvpService.currentHousehold">
+    <p class="bold">{{ guest.firstName }} {{ guest.lastName }}</p>
+    <div class="selection-btns">
+      <button
+        class="janna-ian-button"
+        [ngClass]="[guestIsComing(eActivity.CEREMONY, guest) ? 'primary' : 'outlined-primary']"
+        (click)="selectAnswer(eActivity.CEREMONY, eSelectionAnswer.COMING, guest)"
+      >Ik kom</button>
+      <button
+        class="janna-ian-button"
+        [ngClass]="[guestIsNotComing(eActivity.CEREMONY, guest) ? 'primary' : 'outlined-primary']"
+        (click)="selectAnswer(eActivity.CEREMONY, eSelectionAnswer.NOT_COMING, guest)"
+      >Ik kom niet</button>
+    </div>
+  </div>
+
+  <button
+    class="janna-ian-button primary"
+    [disabled]="!submitStepEnabled(eActivity.CEREMONY) || isLoading"
+    (click)="submitAnswers(eActivity.CEREMONY)"
+  >
+    <span *ngIf="!isLoading">Ga verder</span>
+    <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+  </button>
+</section>
+<!-- END ANTWERP -->
+
+<!-- DINER -->
+<section *ngIf="showDiner">
+  <div class="event-header">
+    <janna-ian-subtitle
+      title="Diner"
+      subtitle="Hof Van Riemen"
+    ></janna-ian-subtitle>
+    <p class="timeslot">19u00 tot 21u00</p>
+  </div>
+
+  <div class="selection" *ngFor="let guest of rsvpService.currentHousehold">
+    <p class="bold">{{ guest.firstName }} {{ guest.lastName }}</p>
+    <div class="selection-btns">
+      <button
+        class="janna-ian-button"
+        [ngClass]="[guestIsComing(eActivity.DINER, guest) ? 'primary' : 'outlined-primary']"
+        (click)="selectAnswer(eActivity.DINER, eSelectionAnswer.COMING, guest)"
+      >Ik kom</button>
+      <button
+        class="janna-ian-button"
+        [ngClass]="[guestIsNotComing(eActivity.DINER, guest) ? 'primary' : 'outlined-primary']"
+        (click)="selectAnswer(eActivity.DINER, eSelectionAnswer.NOT_COMING, guest)"
+      >Ik kom niet</button>
+    </div>
+  </div>
+
+  <button
+    class="janna-ian-button primary"
+    [disabled]="!submitStepEnabled(eActivity.DINER) || isLoading"
+    (click)="submitAnswers(eActivity.DINER)"
+  >
+    <span *ngIf="!isLoading">Ga verder</span>
+    <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+  </button>
+</section>
+<!-- END DINER -->
+
+<!-- PARTY -->
+<section *ngIf="showParty">
+  <div class="event-header">
+    <janna-ian-subtitle
+      title="Party Time"
+      subtitle="Hof Van Riemen"
+    ></janna-ian-subtitle>
+    <p class="timeslot">21u00</p>
+  </div>
+
+  <div class="selection" *ngFor="let guest of rsvpService.currentHousehold">
+    <p class="bold">{{ guest.firstName }} {{ guest.lastName }}</p>
+    <div class="selection-btns">
+      <button
+        class="janna-ian-button"
+        [ngClass]="[guestIsComing(eActivity.PARTY, guest) ? 'primary' : 'outlined-primary']"
+        (click)="selectAnswer(eActivity.PARTY, eSelectionAnswer.COMING, guest)"
+      >Ik kom</button>
+      <button
+        class="janna-ian-button"
+        [ngClass]="[guestIsNotComing(eActivity.PARTY, guest) ? 'primary' : 'outlined-primary']"
+        (click)="selectAnswer(eActivity.PARTY, eSelectionAnswer.NOT_COMING, guest)"
+      >Ik kom niet</button>
+    </div>
+  </div>
+
+  <button
+    class="janna-ian-button primary"
+    [disabled]="!submitStepEnabled(eActivity.PARTY) || isLoading"
+    (click)="submitAnswers(eActivity.PARTY)"
+  >
+    <span *ngIf="!isLoading">Ga verder</span>
+    <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+  </button>
+</section>
+<!-- END PARTY -->
+
+<!-- QUESTIONS OR REMARKS -->
+@if (showQuestionsOrRemarks) {
+  <section>
+    <janna-ian-subtitle
+      title="Nog iets dat je kwijt wil?"
+      subtitle="Vul hier je vragen of opmerkingen (bv: vegetarisch, allergieën, ...) in, zodat we hier rekenening mee kunnen houden."
+    ></janna-ian-subtitle>
+
+    <div class="remarks">
+      <label class="janna-ian-label" for="remarks">
+        Vragen of opmerkingen
+      </label>
+      <textarea
+        #remarks
+        [formControl]="form.controls.remarks"
+        class="janna-ian-input"
+        rows="10"
+      ></textarea>
+    </div>
+    
+    <button
+      class="janna-ian-button primary"
+      [disabled]="isLoading"
+      (click)="submitAttendances()"
+    >
+      <span *ngIf="!isLoading">Verstuur RSVP</span>
+      <i *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></i>
+    </button>
+  </section>
+}
+
+<section *ngIf="showEndComing">
+  <janna-ian-subtitle
+    [title]="'Super leuk dat ' + (attendances.length > 1 ? 'jullie' : 'je') + ' erbij ' + (attendances.length > 1 ? 'zijn' : 'bent') + '!'"
+    [subtitle]="'We kijken uit naar ' + (attendances.length > 1 ? 'jullie' : 'je') + ' komst.'"
+  ></janna-ian-subtitle>
+
+  <img src="assets/images/joepie.jpeg" alt="aldero-happy">
+
+  <button
+    class="janna-ian-button primary"
+    [routerLink]="['/locatie']"
+  >
+    Waar is dat feestje?
+  </button>
+</section>
+
+<section *ngIf="showEndNotComing">
+  <janna-ian-subtitle
+    title="Oh dat is spijtig!"
+    [subtitle]="'Suuuper jammer dat ' + (attendances.length > 1 ? 'jullie' : 'je') + ' er niet bij ' + (attendances.length > 1 ? 'kunnen zijn.' : 'kan zijn') + ', maar we zien elkaar snel terug!'"
+  ></janna-ian-subtitle>
+
+  <img src="assets/images/jammer.jpeg" alt="aldero-sad">
+</section>

@@ -1,0 +1,106 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.selection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .selection-btns {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+}
+
+.janna-ian-button {
+  flex: 1
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .first-name,
+  .last-name {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .error {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: indianred;
+    border-radius: 6px;
+    color: #FEF6E9;
+    padding: 14px 20px;
+  }
+}
+
+.personal-planning {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  janna-ian-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .event {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+
+    i {
+      font-size: 20px;
+    }
+
+    .event-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .event-time {
+      margin-left: auto;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.remarks {
+  display: flex;
+  flex-direction: column;
+
+  textarea {
+    resize: none;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .actions {
+    flex-direction: row;
+  }
+}

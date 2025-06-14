@@ -14,9 +14,11 @@
 .welcome {
   display: flex;
   justify-content: center;
+  margin: 0 auto;
   padding-top: 10px;
   position: relative;
   text-align: center;
+  width: 330px;
   z-index: 1;
 
   .blue-frame {

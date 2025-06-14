@@ -7,6 +7,9 @@ import { Component, Input } from '@angular/core';
       <h4>
         {{ title }}
       </h4>
+      @if (showLemonIcon) {
+        <img src="assets/images/lemon_slice.png" alt="lemon-slice" class="lemon-slice">
+      }
       <p>
         {{ subtitle }}
       </p>
@@ -16,7 +19,13 @@ import { Component, Input } from '@angular/core';
     .subtitle {
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 20px;
+      align-items: center;
+      text-align: center;
+    }
+    .lemon-slice {
+      height: 30px;
+      width: 30px;
     }
   `,
   standalone: true,
@@ -25,4 +34,5 @@ import { Component, Input } from '@angular/core';
 export class SubtitleComponent {
   @Input() title!: string;
   @Input() subtitle!: string;
+  @Input() showLemonIcon!: boolean;
 }
