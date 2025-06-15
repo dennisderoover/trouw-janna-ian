@@ -12,7 +12,7 @@ html {
 html, body {
   background-color: #FFF;
   color: #243179;
-  font-family: 'roxie-rossa';
+  font-family: 'Roboto Serif', serif;
   font-weight: 200;
   font-size: 12px;
   padding: 0;
@@ -25,24 +25,28 @@ html, body {
   }
 
   h1 {
+    font-family: 'roxie-rossa';
     font-size: 40px;
     font-weight: 300;
     margin: 0;
   }
 
   h2 {
+    font-family: 'roxie-rossa';
     font-size: 30px;
     font-weight: 300;
     margin: 0;
   }
 
   h3 {
+    font-family: 'roxie-rossa';
     font-size: 20px;
     font-weight: 300;
     margin: 0;
   }
 
   h4 {
+    font-family: 'roxie-rossa';
     font-size: 16px;
     font-weight: 300;
     margin: 0;
@@ -57,13 +61,20 @@ button.janna-ian-button {
   appearance: none;
   border: none;
   border-radius: 6px;
-  font-family: 'roxie-rossa';
   font-size: 12px;
+  font-family: 'Roboto Serif', serif;
+  font-weight: 200;
   padding: 10px 16px;
 
-  &.primary {
+  &.outlined-primary {
     background-color: transparent;
     color: #243179;
+    border: solid 1px #243179;
+  }
+
+  &.primary {
+    background-color: #243179;
+    color: #FFF;
     border: solid 1px #243179;
   }
 
@@ -77,7 +88,6 @@ button.janna-ian-button {
 }
 
 .janna-ian-label {
-  font-weight: bold;
   margin-bottom: 4px;
 }
 
@@ -88,7 +98,7 @@ button.janna-ian-button {
   border: solid 1px #243179;
   border-radius: 6px;
   color: #243179;
-  font-family: 'roxie-rossa';
+  font-family: 'Roboto Serif', serif;
   font-size: 12px;
   outline: none;
   padding: 14px;

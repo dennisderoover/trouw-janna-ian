@@ -18,7 +18,7 @@
       >
     </div>
     <div class="last-name">
-      <label class="aldero-label" for="lastName">
+      <label class="janna-ian-label" for="lastName">
         Achternaam
       </label>
       <input
@@ -64,6 +64,7 @@
   <janna-ian-subtitle
     title="Let op!"
     [subtitle]="'We hebben al een RSVP van ' + (attendances.length > 1 ? 'jullie' : 'jou') + ' gekregen.'"
+    alignText="left"
   ></janna-ian-subtitle>
 
   @for (guest of rsvpService.currentHousehold; track $index) {
@@ -80,7 +81,7 @@
               }
               <div class="event-info">
                 <span class="event-title bold">Burgerlijke trouw</span>
-                <span class="event-location">Stadhuis Antwerpen</span>
+                <span class="event-location">Stadhuis Lier</span>
               </div>
               <span class="event-time">11u00</span>
             </div>
@@ -94,7 +95,7 @@
               }
               <div class="event-info">
                 <span class="event-title bold">Ceremonie en Receptie</span>
-                <span class="event-location">Hof Van Riemen</span>
+                <span class="event-location">Hof Van Beatrijs</span>
               </div>
               <span class="event-time">15u30 - 19u00</span>
             </div>
@@ -108,7 +109,7 @@
               }
               <div class="event-info">
                 <span class="event-title bold">Diner</span>
-                <span class="event-location">Hof Van Riemen</span>
+                <span class="event-location">Hof Van Beatrijs</span>
               </div>
               <span class="event-time">19u00 - 21u00</span>
             </div>
@@ -122,7 +123,7 @@
               }
               <div class="event-info">
                 <span class="event-title bold">Party Time</span>
-                <span class="event-location">Hof Van Riemen</span>
+                <span class="event-location">Hof Van Beatrijs</span>
               </div>
               <span class="event-time">21u00</span>
             </div>
@@ -157,9 +158,11 @@
   <div class="event-header">
     <janna-ian-subtitle
       title="Burgerlijke trouw"
-      subtitle="Stadhuis Antwerpen"
+      subtitle="Stadhuis Lier"
+      alignText="left"
     ></janna-ian-subtitle>
     <p class="timeslot">11u00</p>
+    <img src="assets/images/lemon_design.png" alt="lemon_design">
   </div>
 
   <div class="selection" *ngFor="let guest of rsvpService.currentHousehold">
@@ -194,9 +197,11 @@
   <div class="event-header">
     <janna-ian-subtitle
       title="Ceremonie en Receptie"
-      subtitle="Hof Van Riemen"
+      subtitle="Hof Van Beatrijs"
+      alignText="left"
     ></janna-ian-subtitle>
     <p class="timeslot">15u00 tot 19u00</p>
+    <img src="assets/images/lemon_design.png" alt="lemon_design">
   </div>
 
   <div class="selection" *ngFor="let guest of rsvpService.currentHousehold">
@@ -231,9 +236,11 @@
   <div class="event-header">
     <janna-ian-subtitle
       title="Diner"
-      subtitle="Hof Van Riemen"
+      subtitle="Hof Van Beatrijs"
+      alignText="left"
     ></janna-ian-subtitle>
     <p class="timeslot">19u00 tot 21u00</p>
+    <img src="assets/images/lemon_design.png" alt="lemon_design">
   </div>
 
   <div class="selection" *ngFor="let guest of rsvpService.currentHousehold">
@@ -268,9 +275,11 @@
   <div class="event-header">
     <janna-ian-subtitle
       title="Party Time"
-      subtitle="Hof Van Riemen"
+      subtitle="Hof Van Beatrijs"
+      alignText="left"
     ></janna-ian-subtitle>
     <p class="timeslot">21u00</p>
+    <img src="assets/images/lemon_design.png" alt="lemon_design">
   </div>
 
   <div class="selection" *ngFor="let guest of rsvpService.currentHousehold">
@@ -306,6 +315,7 @@
     <janna-ian-subtitle
       title="Nog iets dat je kwijt wil?"
       subtitle="Vul hier je vragen of opmerkingen (bv: vegetarisch, allergieën, ...) in, zodat we hier rekenening mee kunnen houden."
+      [showLemonIcon]="true"
     ></janna-ian-subtitle>
 
     <div class="remarks">
@@ -335,6 +345,7 @@
   <janna-ian-subtitle
     [title]="'Super leuk dat ' + (attendances.length > 1 ? 'jullie' : 'je') + ' erbij ' + (attendances.length > 1 ? 'zijn' : 'bent') + '!'"
     [subtitle]="'We kijken uit naar ' + (attendances.length > 1 ? 'jullie' : 'je') + ' komst.'"
+    [showLemonIcon]="true"
   ></janna-ian-subtitle>
 
   <img src="assets/images/joepie.jpeg" alt="aldero-happy">
@@ -351,6 +362,7 @@
   <janna-ian-subtitle
     title="Oh dat is spijtig!"
     [subtitle]="'Suuuper jammer dat ' + (attendances.length > 1 ? 'jullie' : 'je') + ' er niet bij ' + (attendances.length > 1 ? 'kunnen zijn.' : 'kan zijn') + ', maar we zien elkaar snel terug!'"
+    [showLemonIcon]="true"
   ></janna-ian-subtitle>
 
   <img src="assets/images/jammer.jpeg" alt="aldero-sad">
