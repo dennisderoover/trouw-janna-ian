@@ -343,12 +343,10 @@
 
 <section *ngIf="showEndComing">
   <janna-ian-subtitle
-    [title]="'Super leuk dat ' + (attendances.length > 1 ? 'jullie' : 'je') + ' erbij ' + (attendances.length > 1 ? 'zijn' : 'bent') + '!'"
+    [title]="'Molto divertente! Leuk dat ' + (attendances.length > 1 ? 'jullie' : 'je') + ' erbij ' + (attendances.length > 1 ? 'zijn' : 'bent') + '!'"
     [subtitle]="'We kijken uit naar ' + (attendances.length > 1 ? 'jullie' : 'je') + ' komst.'"
     [showLemonIcon]="true"
   ></janna-ian-subtitle>
-
-  <img src="assets/images/joepie.jpeg" alt="aldero-happy">
 
   <button
     class="janna-ian-button primary"
@@ -360,10 +358,8 @@
 
 <section *ngIf="showEndNotComing">
   <janna-ian-subtitle
-    title="Oh dat is spijtig!"
-    [subtitle]="'Suuuper jammer dat ' + (attendances.length > 1 ? 'jullie' : 'je') + ' er niet bij ' + (attendances.length > 1 ? 'kunnen zijn.' : 'kan zijn') + ', maar we zien elkaar snel terug!'"
+    title="Peccato! Dat is spijtig!"
+    [subtitle]="'Jammer dat ' + (attendances.length > 1 ? 'jullie' : 'je') + ' er niet bij ' + (attendances.length > 1 ? 'kunnen zijn.' : 'kan zijn') + ', maar we zien elkaar snel terug!'"
     [showLemonIcon]="true"
   ></janna-ian-subtitle>
-
-  <img src="assets/images/jammer.jpeg" alt="aldero-sad">
 </section>

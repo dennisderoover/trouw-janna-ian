@@ -11,7 +11,7 @@ import { SubtitleComponent } from '../shared/subtitle/subtitle.component';
   styleUrl: './dresscode.component.scss'
 })
 export class DresscodeComponent {
-  public readonly title = 'Dresscode inspiratie';
+  public readonly title = 'Codice Di Abbigliamento';
   public readonly subtitle = `
     Het thema van onze trouw is ‘Italian Summer’.
     Hieronder enkele foto’s en een kleurpalet ter inspiratie voor je feestoutfit. 
