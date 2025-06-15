@@ -1,0 +1,53 @@
+<janna-ian-subtitle
+  title="Luoghi"
+  subtitle="We geven eerst ons ja-woord op het Stadhuis van Lier en zakken nadien af naar het Hof Van Beatrijs om samen met jullie te vieren!"
+  [showLemonIcon]="true"
+></janna-ian-subtitle>
+
+<google-map [height]="detectDeviceService.isMobileDevice ? '325px' : '632px'" width="100%" [options]="options">
+  @for (location of locations; track location) {
+    <map-advanced-marker
+      #markerElem="mapAdvancedMarker"
+      [position]="{ lat: location.lat, lng: location.lng}"
+      [content]="location.marker"
+    />
+  }
+  <img src="assets/images/lemon_design.png" alt="lemon_design" class="lemons-top-left">
+  <div class="address-top-right">
+    <p>
+      <span class="bold">Stadhuis</span><br>
+      Grote Markt 58<br>2500 Lier
+    </p>
+    <i
+      class="fa-solid fa-diamond-turn-right"
+      (click)="getDirections(eDestionation.LIER)"
+    ></i>
+  </div>
+  <div class="address-bottom-left">
+    <p>
+      <span class="bold">Hof Van Beatrijs</span><br>
+      Nazaretdreef 99<br>
+      2500 Lier
+    </p>
+    <i
+      class="fa-solid fa-diamond-turn-right"
+      (click)="getDirections(eDestionation.HOF_VAN_BEATRIJS)"
+    ></i>
+  </div>
+  <img src="assets/images/lemon_design.png" alt="lemon_design" class="lemons-bottom-right">
+</google-map>
+
+<janna-ian-subtitle
+  title="Hof Van Beatrijs"
+></janna-ian-subtitle>
+
+<ngx-slick-carousel class="carousel" 
+  #slickModal="slick-carousel" 
+  [config]="slideConfig"
+>
+  @for (image of images; track image.src) {
+    <div ngxSlickItem class="slide">
+      <img src="{{ image.src }}" width="100%">
+    </div>
+  }
+</ngx-slick-carousel>

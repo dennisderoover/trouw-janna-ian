@@ -1,0 +1,84 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.image-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 
+    "DC-0 DC-1"
+    "CP CP"
+    "DC-2 DC-2";
+  gap: 20px;
+
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+
+  .dresscode-0 {
+    grid-area: DC-0;
+  }
+
+  .dresscode-1 {
+    grid-area: DC-1;
+  }
+
+  .dresscode-2 {
+    grid-area: DC-2;
+    object-position: 0 -130px;
+  }
+
+  .color-palette {
+    grid-area: CP;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .circle {
+      min-width: 60px;
+      border-radius: 100%;
+      height: 60px;
+      width: 60px;
+    }
+
+    .color-1 {
+      background-color: #9fb7ed;
+    }
+
+    .color-2 {
+      background-color: #f2720f;
+    }
+
+    .color-3 {
+      background-color: #f6e681;
+    }
+
+    .color-4 {
+      background-color: #F95D41;
+    }
+
+    .color-5 {
+      background-color: #31537F;
+    }
+
+    .color-6 {
+      background-color: #8dcb77;
+    }
+
+    .color-7 {
+      background-color: #8EA162;
+    }
+
+    .color-8 {
+      background-color: #fff34a;
+    }
+  }
+}

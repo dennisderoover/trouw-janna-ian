@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
-import { CadeauComponent, HomeComponent, RSVPComponent } from '.';
+import { CadeauComponent, DresscodeComponent, HomeComponent, LocatieComponent, RSVPComponent } from '.';
 
 export const routes: Routes = [
-  // {
-  //   path: 'dresscode',
-  //   component: DresscodeComponent,
-  // },
-  // {
-  //   path: 'locatie',
-  //   component: LocatieComponent,
-  // },
+  {
+    path: 'dresscode',
+    component: DresscodeComponent,
+  },
+  {
+    path: 'locatie',
+    component: LocatieComponent,
+  },
   {
     path: 'cadeau',
     component: CadeauComponent,
