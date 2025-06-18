@@ -11,8 +11,13 @@
   <i class="fa-solid fa-piggy-bank"></i>
   <p class="bank-account" (click)="copyToClipboard()">
     BE04 0018 9853 5631
-    <span class="copy-tooltip">Kopieer rekeningnummer</span>
   </p>
   <p>of</p>
   <i class="fa-regular fa-envelope"></i>
 </div>
+
+@if (showNotification) {
+  <div @slideInOut class="notification">
+    <p class="content"><i class="fa-solid fa-check"></i>Rekeningnummer gekopieerd</p>
+  </div>
+}

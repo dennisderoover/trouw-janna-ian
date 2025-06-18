@@ -40,34 +40,31 @@
   .bank-account {
     position: relative;
     display: inline-block;
-
-    .copy-tooltip {
-      visibility: hidden;
-      background-color: #FFF;
-      width: 150px;
-      color: #243179;
-      text-align: center;
-      padding: 5px;
-      position: absolute;
-      z-index: 1;
-      top: 120%;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.7rem;
-      border: #243179 1px solid;
-      
-      /* Fade in tooltip - takes 200ms to go from 0% to 100% opac: */
-      opacity: 0;
-      transition: opacity 200ms;
-    }
   }
 
   .bank-account:hover {
     cursor: pointer;
+  }
+}
 
-    .copy-tooltip {
-      visibility: visible;
-      opacity: 1;
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+
+  .content {
+    font-size: 12px;
+    padding: 15px;
+    border-radius: 6px;
+    background-color: #243179;
+    color: #FFF;
+    width: 240px;
+    text-align: center;
+    margin: 0 auto;
+
+    i {
+      margin-right: 10px;
     }
   }
 }
